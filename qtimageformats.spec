@@ -1,13 +1,13 @@
-%define _qtmodule_snapshot_version 5~5.0.0~alpha1
+%define _qtmodule_snapshot_version 5.0.0-beta1
 Name:       qt5-qtimageformats
 Summary:    Qt Imageformats
-Version:    %{_qtmodule_snapshot_version}
+Version:    5.0.0~beta1
 Release:    1%{?dist}
 Group:      Qt/Qt
 License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
-Source0:    %{name}-%{version}.tar.gz
-Patch1:     destdir.patch
+Source0:    qtimageformats-opensource-src-%{_qtmodule_snapshot_version}.tar.xz
+Patch0:     destdir.patch
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
 
@@ -52,8 +52,8 @@ This package provides the WBMP imageformat plugin
 #### Build section
 
 %prep
-%setup -q -n %{name}
-%patch1 -p1
+%setup -q -n qtimageformats-opensource-src-%{_qtmodule_snapshot_version}
+%patch0 -p1
 
 %build
 export QTDIR=/usr/share/qt5
