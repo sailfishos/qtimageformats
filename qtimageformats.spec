@@ -1,16 +1,16 @@
-%define _qtmodule_snapshot_version 5.0.0-beta1
+%define _qtmodule_snapshot_version 5.0.0
 Name:       qt5-qtimageformats
 Summary:    Qt Imageformats
-Version:    5.0.0~beta1
+Version:    5.0.0
 Release:    1%{?dist}
 Group:      Qt/Qt
 License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
 Source0:    qtimageformats-opensource-src-%{_qtmodule_snapshot_version}.tar.xz
-Patch0:     destdir.patch
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
-
+BuildRequires:  libmng-devel
+Buildrequires:  libtiff-devel  
 %description
 Qt is a cross-platform application and UI framework. Using Qt, you can
 write web-enabled applications once and deploy them across desktop,
@@ -53,11 +53,10 @@ This package provides the WBMP imageformat plugin
 
 %prep
 %setup -q -n qtimageformats-opensource-src-%{_qtmodule_snapshot_version}
-%patch0 -p1
 
 %build
 export QTDIR=/usr/share/qt5
-%qmake
+qmake
 make %{?_smp_flags}
 
 %install
