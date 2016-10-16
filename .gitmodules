@@ -1,0 +1,3 @@
+[submodule "qtimageformats"]
+	path = qtimageformats
+	url = http://code.qt.io/qt/qtimageformats.git

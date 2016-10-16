@@ -1,13 +1,12 @@
-%define _qtmodule_snapshot_version 5.0.2
 Name:       qt5-qtimageformats
 Summary:    Qt Imageformats
-Version:    5.0.2
+Version:    5.6.2
 Release:    1%{?dist}
 Group:      Qt/Qt
 License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
-Source0:    qtimageformats-opensource-src-%{_qtmodule_snapshot_version}.tar.xz
-BuildRequires:  qt5-qtcore-devel
+Source0:    %{name}-%{version}.tar.bz2
+BuildRequires:  qt5-qtcore-devel >= 5.6.2
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  libmng-devel
 Buildrequires:  libtiff-devel  
@@ -49,10 +48,34 @@ Group:      Qt/Qt
 %description plugin-wbmp
 This package provides the WBMP imageformat plugin
 
+
+%package plugin-dds
+Summary:    Qt Imageformats - DDS plugin
+Group:      Qt/Qt
+
+%description plugin-dds
+This package provides the DDS imageformat plugin
+
+
+%package plugin-icns
+Summary:    Qt Imageformats - ICNS plugin
+Group:      Qt/Qt
+
+%description plugin-icns
+This package provides the ICNS imageformat plugin
+
+
+%package plugin-webp
+Summary:    Qt Imageformats - WEBP plugin
+Group:      Qt/Qt
+
+%description plugin-webp
+This package provides the WEBP imageformat plugin
+
 #### Build section
 
 %prep
-%setup -q -n qtimageformats-opensource-src-%{_qtmodule_snapshot_version}
+%setup -q -n %{name}-%{version}/qtimageformats
 
 %build
 export QTDIR=/usr/share/qt5
@@ -62,6 +85,10 @@ make %{?_smp_flags}
 %install
 rm -rf %{buildroot}
 %qmake_install
+
+# these manage to really royally screw up cmake
+find %{buildroot}%{_libdir}/cmake/Qt5Gui/ -type f -name "*_*Plugin.cmake" \
+-exec rm {} \;
 
 %files plugin-mng
 %defattr(-,root,root,-)
@@ -78,6 +105,18 @@ rm -rf %{buildroot}
 %files plugin-wbmp
 %defattr(-,root,root,-)
 %{_libdir}/qt5/plugins/imageformats/libqwbmp.so
+
+%files plugin-dds
+%defattr(-,root,root,-)
+%{_libdir}/qt5/plugins/imageformats/libqdds.so
+
+%files plugin-icns
+%defattr(-,root,root,-)
+%{_libdir}/qt5/plugins/imageformats/libqicns.so
+
+%files plugin-webp
+%defattr(-,root,root,-)
+%{_libdir}/qt5/plugins/imageformats/libqwebp.so
 
 
 #### No changelog section, separate $pkg.changes contains the history
