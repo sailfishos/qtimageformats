@@ -1,6 +1,6 @@
 Name:       qt5-qtimageformats
 Summary:    Qt Imageformats
-Version:    5.6.2
+Version:    5.6.3
 Release:    1%{?dist}
 Group:      Qt/Qt
 License:    LGPLv2.1 with exception or GPLv3
@@ -8,8 +8,11 @@ URL:        http://qt.nokia.com
 Source0:    %{name}-%{version}.tar.bz2
 BuildRequires:  qt5-qtcore-devel >= 5.6.2
 BuildRequires:  qt5-qtgui-devel
-BuildRequires:  libmng-devel
-Buildrequires:  libtiff-devel  
+BuildRequires:  pkgconfig(libmng)
+Buildrequires:  pkgconfig(libtiff-4)
+Buildrequires:  pkgconfig(libwebp)
+Obsoletes: %{name}-plugin-dds
+
 %description
 Qt is a cross-platform application and UI framework. Using Qt, you can
 write web-enabled applications once and deploy them across desktop,
@@ -47,14 +50,6 @@ Group:      Qt/Qt
 
 %description plugin-wbmp
 This package provides the WBMP imageformat plugin
-
-
-%package plugin-dds
-Summary:    Qt Imageformats - DDS plugin
-Group:      Qt/Qt
-
-%description plugin-dds
-This package provides the DDS imageformat plugin
 
 
 %package plugin-icns
@@ -105,10 +100,6 @@ find %{buildroot}%{_libdir}/cmake/Qt5Gui/ -type f -name "*_*Plugin.cmake" \
 %files plugin-wbmp
 %defattr(-,root,root,-)
 %{_libdir}/qt5/plugins/imageformats/libqwbmp.so
-
-%files plugin-dds
-%defattr(-,root,root,-)
-%{_libdir}/qt5/plugins/imageformats/libqdds.so
 
 %files plugin-icns
 %defattr(-,root,root,-)
