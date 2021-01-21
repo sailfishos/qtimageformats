@@ -2,16 +2,14 @@ Name:       qt5-qtimageformats
 Summary:    Qt Imageformats
 Version:    5.6.3
 Release:    1%{?dist}
-Group:      Qt/Qt
-License:    LGPLv2.1 with exception or GPLv3
-URL:        http://qt.nokia.com
+License:    LGPLv2 with exception or GPLv3
+URL:        http://www.qt.io
 Source0:    %{name}-%{version}.tar.bz2
 BuildRequires:  qt5-qtcore-devel >= 5.6.2
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  pkgconfig(libmng)
 Buildrequires:  pkgconfig(libtiff-4)
 Buildrequires:  pkgconfig(libwebp)
-Obsoletes: %{name}-plugin-dds
 
 %description
 Qt is a cross-platform application and UI framework. Using Qt, you can
@@ -22,7 +20,6 @@ This package contains the Qt Image Formats plugin
 
 %package plugin-mng
 Summary:    Qt Imageformats - MNG plugin
-Group:      Qt/Qt
 
 %description plugin-mng
 This package provides the MNG imageformat plugin
@@ -30,7 +27,6 @@ This package provides the MNG imageformat plugin
 
 %package plugin-tga
 Summary:    Qt Imageformats - TGA plugin
-Group:      Qt/Qt
 
 %description plugin-tga
 This package provides the TGA imageformat plugin
@@ -38,7 +34,6 @@ This package provides the TGA imageformat plugin
 
 %package plugin-tiff
 Summary:    Qt Imageformats - TIFF plugin
-Group:      Qt/Qt
 
 %description plugin-tiff
 This package provides the TIFF imageformat plugin
@@ -46,7 +41,6 @@ This package provides the TIFF imageformat plugin
 
 %package plugin-wbmp
 Summary:    Qt Imageformats - WBMP plugin
-Group:      Qt/Qt
 
 %description plugin-wbmp
 This package provides the WBMP imageformat plugin
@@ -54,7 +48,6 @@ This package provides the WBMP imageformat plugin
 
 %package plugin-icns
 Summary:    Qt Imageformats - ICNS plugin
-Group:      Qt/Qt
 
 %description plugin-icns
 This package provides the ICNS imageformat plugin
@@ -62,12 +55,10 @@ This package provides the ICNS imageformat plugin
 
 %package plugin-webp
 Summary:    Qt Imageformats - WEBP plugin
-Group:      Qt/Qt
 
 %description plugin-webp
 This package provides the WEBP imageformat plugin
 
-#### Build section
 
 %prep
 %setup -q -n %{name}-%{version}/qtimageformats
@@ -108,7 +99,4 @@ find %{buildroot}%{_libdir}/cmake/Qt5Gui/ -type f -name "*_*Plugin.cmake" \
 %files plugin-webp
 %defattr(-,root,root,-)
 %{_libdir}/qt5/plugins/imageformats/libqwebp.so
-
-
-#### No changelog section, separate $pkg.changes contains the history
 
