@@ -3,7 +3,7 @@ Summary:    Qt Imageformats
 Version:    5.6.3
 Release:    1%{?dist}
 License:    LGPLv2 with exception or GPLv3
-URL:        http://www.qt.io
+URL:        https://github.com/sailfishos/qtimageformats
 Source0:    %{name}-%{version}.tar.bz2
 BuildRequires:  qt5-qtcore-devel >= 5.6.2
 BuildRequires:  qt5-qtgui-devel
