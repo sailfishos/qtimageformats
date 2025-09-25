@@ -1,7 +1,7 @@
 Name:       qt5-qtimageformats
 Summary:    Qt Imageformats
 Version:    5.6.3
-Release:    1%{?dist}
+Release:    1
 License:    LGPLv2 with exception or LGPLv3 or Qt Commercial
 URL:        https://github.com/sailfishos/qtimageformats
 Source0:    %{name}-%{version}.tar.bz2
@@ -64,43 +64,36 @@ This package provides the WEBP imageformat plugin
 %setup -q -n %{name}-%{version}/qtimageformats
 
 %build
-export QTDIR=/usr/share/qt5
-qmake -qt=5
-make %{?_smp_flags}
+%qmake5
+%make_build
 
 %install
-%qmake_install
+%qmake5_install
 
 # these manage to really royally screw up cmake
 find %{buildroot}%{_libdir}/cmake/Qt5Gui/ -type f -name "*_*Plugin.cmake" \
 -exec rm {} \;
 
 %files plugin-mng
-%defattr(-,root,root,-)
 %license LICENSE.LGPLv21 LGPL_EXCEPTION.txt LICENSE.LGPLv3 LICENSE.GPLv3
 %{_libdir}/qt5/plugins/imageformats/libqmng.so
 
 %files plugin-tga
-%defattr(-,root,root,-)
 %license LICENSE.LGPLv21 LGPL_EXCEPTION.txt LICENSE.LGPLv3 LICENSE.GPLv3
 %{_libdir}/qt5/plugins/imageformats/libqtga.so
 
 %files plugin-tiff
-%defattr(-,root,root,-)
 %license LICENSE.LGPLv21 LGPL_EXCEPTION.txt LICENSE.LGPLv3 LICENSE.GPLv3
 %{_libdir}/qt5/plugins/imageformats/libqtiff.so
 
 %files plugin-wbmp
-%defattr(-,root,root,-)
 %license LICENSE.LGPLv21 LGPL_EXCEPTION.txt LICENSE.LGPLv3 LICENSE.GPLv3
 %{_libdir}/qt5/plugins/imageformats/libqwbmp.so
 
 %files plugin-icns
-%defattr(-,root,root,-)
 %license LICENSE.LGPLv21 LGPL_EXCEPTION.txt LICENSE.LGPLv3 LICENSE.GPLv3
 %{_libdir}/qt5/plugins/imageformats/libqicns.so
 
 %files plugin-webp
-%defattr(-,root,root,-)
 %license LICENSE.LGPLv21 LGPL_EXCEPTION.txt LICENSE.LGPLv3 LICENSE.GPLv3
 %{_libdir}/qt5/plugins/imageformats/libqwebp.so
